@@ -34,12 +34,11 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(favicon(`${publicDirectoryPath}/chat.png`));
 
 // res.set('Access-Control-Allow-Origin', req.headers.origin)
-res.set('Access-Control-Allow-Origin', '*')
-res.set('Access-Control-Allow-Credentials', 'true')
+// res.set('Access-Control-Allow-Credentials', 'true')
 // app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
-// app.use(cors({
-//   origin: '*', credentials: true, exposedHeaders: 'Authorization'
-// }));
+app.use(cors({
+  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST"]
+}));
 app.use(cookieParser());
 app.use(userRouter);
 app.use(chatRouter);
