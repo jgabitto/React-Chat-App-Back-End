@@ -35,7 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // res.set('Access-Control-Allow-Origin', req.headers.origin)
 // res.set('Access-Control-Allow-Credentials', 'true')
-app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
+// app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
+app.use(cors({ origin: 'https://react-chat-back-end.herokuapp.com/', credentials: true, exposedHeaders: 'Authorization' }));
 app.use(cookieParser());
 app.use(userRouter);
 app.use(chatRouter);
