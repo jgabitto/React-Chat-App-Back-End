@@ -25,9 +25,6 @@ const {
 
 const app = express();
 const server = http.createServer(app); // Explicitly creating server
-app.use(cors({
-  origin: '*', credentials: true, exposedHeaders: 'Authorization'
-}));
 const io = socketio(server);
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
@@ -37,7 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(favicon(`${publicDirectoryPath}/chat.png`));
 
 // res.set('Access-Control-Allow-Origin', req.headers.origin)
-// res.set('Access-Control-Allow-Credentials', 'true')
+res.set('Access-Control-Allow-Origin', '*')
+res.set('Access-Control-Allow-Credentials', 'true')
 // app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
 // app.use(cors({
 //   origin: '*', credentials: true, exposedHeaders: 'Authorization'
