@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 // res.set('Access-Control-Allow-Credentials', 'true')
 // app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
 app.use(cors({
-  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST"]
+  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
 }));
 app.use(cookieParser());
 app.use(userRouter);
