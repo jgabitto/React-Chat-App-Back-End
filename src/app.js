@@ -26,7 +26,7 @@ const {
 const app = express();
 const server = http.createServer(app); // Explicitly creating server
 const io = socketio(server, {
-  origins: ["https://jorge-chat-app.netlify.app"]
+  origins: '*:*'
 });
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
