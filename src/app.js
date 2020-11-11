@@ -25,9 +25,7 @@ const {
 
 const app = express();
 const server = http.createServer(app); // Explicitly creating server
-const io = socketio(server, {
-  origins: '*:*'
-});
+const io = socketio(server);
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
 // Accepts json data within the form data
