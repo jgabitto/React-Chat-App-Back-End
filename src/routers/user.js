@@ -1,5 +1,7 @@
 const express = require('express');
 
+const auth = require('../middleware/auth');
+
 const User = require('../models/user');
 
 const router = new express.Router();
@@ -36,6 +38,19 @@ router.post('/signup', async (req, res) => {
     } catch (e) {
         console.log(e.message)
         return res.status(400).send({ message: e.message });
+    }
+})
+
+// POST Logout user
+router.get('/logout', auth, async (req, res) => {
+    try {
+        // Clear token from cookie
+        res.clearCookie('auth_token');
+
+        return res.sendStatus(200);
+    } catch (e) {
+        console.log(e)
+        res.status(500).send(e.message);
     }
 })
 
