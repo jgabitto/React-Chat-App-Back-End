@@ -16,9 +16,10 @@ router.post('/signIn', async (req, res) => {
         // Put JWT in cookie
         res.cookie('auth_token', token);
         res.set({ 'Authorization': token })
-        return res.sendStatus(200);
+        return res.status(200).send({ message: 'Success' });
     } catch (e) {
-        return res.sendStatus(400);
+        console.log(e.message)
+        return res.status(400).send({ message: e.message });
     }
 })
 

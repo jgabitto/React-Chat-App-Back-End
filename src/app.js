@@ -54,7 +54,8 @@ io.on("connection", (socket) => {
   console.log("New WebSocket connection");
 
   socket.on('join', (options, callback) => {
-    console.log(options)
+    console.log('options', options)
+    // if (!options.hasOwnProperty('status')) {
     // Add user to room
     const { error, user } = addUser({ id: socket.id, ...options })
 
@@ -72,6 +73,12 @@ io.on("connection", (socket) => {
     io.to(user.room).emit('roomData', {
       room: user.room,
       users: getUsersInRoom(user.room)
+    })
+    // }
+    // Send list of users in room after user has joined
+    io.to(options.room).emit('roomData', {
+      room: options.room,
+      users: getUsersInRoom(options.room)
     })
     callback();
   })
@@ -91,9 +98,10 @@ io.on("connection", (socket) => {
   socket.on('disconnect', () => {
     // Remove user from room
     const user = removeUser(socket.id);
-
     // Send message if user has left
     if (user) {
+      console.log('room', getUsersInRoom(user.room))
+
       console.log(`${user.username} has left`)
       io.to(user.room).emit('serverMessage', generateMessage("Admin", `${user.username} has left!`))
       // Send list of users after user has left
