@@ -4,7 +4,6 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const socketio = require("socket.io");
-const { shouldSendSameSiteNone } = require('should-send-same-site-none');
 const hbs = require("hbs");
 const favicon = require("serve-favicon");
 
@@ -28,7 +27,6 @@ const app = express();
 const server = http.createServer(app); // Explicitly creating server
 const io = socketio(server);
 
-app.use(shouldSendSameSiteNone);
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
 // Accepts json data within the form data
@@ -40,7 +38,7 @@ app.use(cookieParser());
 // res.set('Access-Control-Allow-Credentials', 'true')
 // app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
 app.use(cors({
-  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: ['Authorization', 'Set-Cookie'], methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
+  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
 }));
 app.set('trust proxy', 1)
 app.use(userRouter);
