@@ -40,7 +40,7 @@ app.use(cookieParser());
 // res.set('Access-Control-Allow-Credentials', 'true')
 // app.use(cors({ origin: true, credentials: true, exposedHeaders: 'Authorization' }));
 app.use(cors({
-  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
+  origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: ['Authorization', 'Set-Cookie'], methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
 }));
 app.set('trust proxy', 1)
 app.use(userRouter);
