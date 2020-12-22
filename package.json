@@ -26,6 +26,7 @@
     "mongodb": "^3.3.5",
     "mongoose": "^5.7.12",
     "serve-favicon": "^2.5.0",
+    "should-send-same-site-none": "^2.0.5",
     "socket.io": "^2.3.0",
     "validator": "^12.1.0"
   },

@@ -4,6 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const socketio = require("socket.io");
+const { shouldSendSameSiteNone } = require('should-send-same-site-none');
 const hbs = require("hbs");
 const favicon = require("serve-favicon");
 
@@ -27,6 +28,7 @@ const app = express();
 const server = http.createServer(app); // Explicitly creating server
 const io = socketio(server);
 
+app.use(shouldSendSameSiteNone);
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
 // Accepts json data within the form data
