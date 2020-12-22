@@ -26,7 +26,7 @@ const {
 const app = express();
 const server = http.createServer(app); // Explicitly creating server
 const io = socketio(server);
-app.set('trust proxy', 1)
+
 // Parse incoming JSON into an object so it can be accessed in our req handlers
 app.use(express.json());
 // Accepts json data within the form data
@@ -40,6 +40,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
 }));
+app.set('trust proxy', 1)
 app.use(userRouter);
 app.use(chatRouter);
 
