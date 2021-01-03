@@ -40,7 +40,6 @@ app.use(cookieParser());
 app.use(cors({
   origin: 'https://jorge-chat-app.netlify.app', credentials: true, exposedHeaders: 'Authorization', methods: ["GET,HEAD,PUT,PATCH,POST, OPTIONS"]
 }));
-app.set('trust proxy', 1)
 app.use(userRouter);
 app.use(chatRouter);
 
